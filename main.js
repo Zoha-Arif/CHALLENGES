@@ -34,7 +34,8 @@ function calculate(startn, endn) {
     for(var x = 0; x < totalSum.length; x++){
         sumFinal = sumFinal + totalSum[x]; 
     }
-    document.getElementById("displaySum").innerHTML = sumFinal; 
+
+    document.getElementById("displaySum").innerHTML = `The sum of all prime numbers between ${startn} and ${endn} is ${sumFinal}.`; 
 }
 
 $(document).ready(function(){ //when document is ready, function will be executed.
@@ -45,7 +46,16 @@ $(document).ready(function(){ //when document is ready, function will be execute
             var endn3 = document.getElementById("endn2").value;
             startn3 = parseInt(startn3); 
             endn3 = parseInt(endn3); 
-            calculate(startn3, endn3)
+            if ( (isNaN(startn3)) || (isNaN(endn3)) ){
+                console.log("m"); 
+                document.getElementById("displaySum").innerHTML = "Ah, you didn't enter a number!";
+            }
+            else if (startn3 > endn3) {
+                document.getElementById("displaySum").innerHTML = "Uh oh! Looks like your starting number is greater than your ending number!";
+            }
+            else {
+                calculate(startn3, endn3)
+            }
         }
     })
 })
